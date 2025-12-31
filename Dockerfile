@@ -16,4 +16,5 @@ COPY . /app
 ENV PYTHONUNBUFFERED=1
 EXPOSE 5000
 
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:${PORT:-5000}", "--workers", "1"]
+# Use sh -c so $PORT is expanded by the shell at container runtime
+CMD ["sh", "-c", "gunicorn app:app -b 0.0.0.0:${PORT:-5000} --workers 1"]
