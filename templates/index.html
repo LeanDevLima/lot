@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conferidor Mega-Sena</title>
+    <style>body{font-family:Arial,Helvetica,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem}label,input,button{display:block;width:100%}input{padding:.5rem;margin:.5rem 0}button{padding:.6rem;margin-top:.5rem}</style>
+  </head>
+  <body>
+    <h1>Conferidor de Mega-Sena</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color:darkred;">{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post">
+      <label>Dezenas sorteadas (6 números entre 1 e 60):</label>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <input type="number" name="dez1" min="1" max="60" required placeholder="1" style="width:60px" />
+        <input type="number" name="dez2" min="1" max="60" required placeholder="2" style="width:60px" />
+        <input type="number" name="dez3" min="1" max="60" required placeholder="3" style="width:60px" />
+        <input type="number" name="dez4" min="1" max="60" required placeholder="4" style="width:60px" />
+        <input type="number" name="dez5" min="1" max="60" required placeholder="5" style="width:60px" />
+        <input type="number" name="dez6" min="1" max="60" required placeholder="6" style="width:60px" />
+      </div>
+      <button type="submit" style="margin-top:.8rem">Conferir</button>
+    </form>
+    <p style="margin-top:1rem;color:#555">O arquivo `sequencias.json` é usado como bilhetes (20 sequências).</p>
+  </body>
+</html>

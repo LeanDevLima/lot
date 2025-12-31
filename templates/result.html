@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resultado - Conferidor Mega-Sena</title>
+    <style>body{font-family:Arial,Helvetica,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem}pre{background:#f6f6f6;padding:1rem}</style>
+  </head>
+  <body>
+    <h1>Resultado</h1>
+    <p><strong>Dezenas informadas:</strong> {{ dezenas|join(' ') }}</p>
+
+    {% if not (resultado[6] or resultado[5] or resultado[4]) %}
+      <p>Nenhuma sequência fez Quadra (4), Quina (5) ou Sena (6).</p>
+    {% else %}
+      {% if resultado[6] %}
+        <h2>🏆 Sena (6 acertos)</h2>
+        <ul>{% for idx, dez in resultado[6] %}<li>Seq {{ idx }}: {{ dez }}</li>{% endfor %}</ul>
+      {% endif %}
+      {% if resultado[5] %}
+        <h2>🥈 Quina (5 acertos)</h2>
+        <ul>{% for idx, dez in resultado[5] %}<li>Seq {{ idx }}: {{ dez }}</li>{% endfor %}</ul>
+      {% endif %}
+      {% if resultado[4] %}
+        <h2>🥉 Quadra (4 acertos)</h2>
+        <ul>{% for idx, dez in resultado[4] %}<li>Seq {{ idx }}: {{ dez }}</li>{% endfor %}</ul>
+      {% endif %}
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">Voltar</a></p>
+  </body>
+</html>
